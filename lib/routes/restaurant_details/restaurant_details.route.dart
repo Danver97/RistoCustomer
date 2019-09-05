@@ -9,7 +9,7 @@ import 'package:prova/routes/restaurant_details/timetables/timetables.widget.dar
 
 class RestaurantDetailsRoute extends StatelessWidget {
 
-  static final String named = '/restaurant';
+  static final String routeName = '/restaurant';
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,7 @@ class Details extends StatelessWidget {
               fabColor: Color(0xFFFFA200),
               label: 'Reservation',
               onPressed: () {
-                Navigator.pushNamed(context, ReserveRoute.named, arguments: restaurant.timetable);
+                Navigator.pushNamed(context, ReserveRoute.routeName, arguments: restaurant.timetable);
               }),
           _fab(
               icon: Icon(

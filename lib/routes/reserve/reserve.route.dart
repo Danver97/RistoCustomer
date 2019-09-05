@@ -8,7 +8,7 @@ import 'package:prova/routes/reserve/peoplePicker.widget.dart';
 import 'package:prova/routes/restaurant_details/timetables/timetables.dart';
 
 class ReserveRoute extends StatelessWidget {
-  static String named = '/restaurant/reserve';
+  static String routeName = '/restaurant/reserve';
 
   @override
   Widget build(BuildContext context) {

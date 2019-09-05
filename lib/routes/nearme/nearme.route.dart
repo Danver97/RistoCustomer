@@ -9,7 +9,7 @@ import 'package:prova/restaurant_entry.dart';
 
 class NearmeRoute extends StatelessWidget {
 
-  static final String named = '/nearme';
+  static final String routeName = '/nearme';
 
   Future<List<Post>> fetchRestaurant() async {
     final response =
@@ -62,7 +62,7 @@ class NearmeRoute extends StatelessWidget {
                       margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                       restaurantName: d.title.substring(0, 30 < d.title.length ? 30 : d.title.length),
                       onTap: () {
-                        Navigator.pushNamed(context, RestaurantDetailsRoute.named);
+                        Navigator.pushNamed(context, RestaurantDetailsRoute.routeName);
                       },
                     );
                   }).toList(),
