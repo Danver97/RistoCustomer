@@ -4,7 +4,7 @@ import 'package:prova/models/restaurant.dart';
 import 'package:prova/routes/restaurant_details/restaurant_details.route.dart';
 import 'dart:convert';
 
-import 'package:prova/restaurant_entry.dart';
+import 'package:prova/routes/nearme/restaurant_entry.widget.dart';
 
 // TODO: implementare funzione di ricerca e filtraggio
 
@@ -69,10 +69,11 @@ class NearmeRoute extends StatelessWidget {
 
                 return RestaurantList(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
-                  children: snapshot.data.map((d) {
+                  children: snapshot.data.map((r) {
                     return FlatRestaurantEntry(
                       margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                      restaurantName: d.name,
+                      restaurant: r,
+                      restaurantName: r.name,
                       onTap: () {
                         Navigator.pushNamed(context, RestaurantDetailsRoute.routeName);
                       },

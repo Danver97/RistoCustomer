@@ -2,10 +2,11 @@
     "restId": "22ac5abb-188e-46c8-89b6-f1d1a5f57006",
     "name": "Playa Cabana",
     "priceLevel": 3,
-    "review": 4.3,
+    "reviewScore": 4.3,
     "mainPicture": "https://www.scripps.org/sparkle-assets/images/mexican_food_1200x750-14c09ee840f1824937cabd4c79bf86b8.jpg",
     "type": [
-        "Mexican"
+        "Mexican",
+        "Spicy"
     ],
     "timetable": {
         "1": [
@@ -90,7 +91,7 @@
     "restId": "22ac5abb-188e-46c8-89b6-f1d1a5f57007",
     "name": "Queso de mamita",
     "priceLevel": 2,
-    "review": 4.7,
+    "reviewScore": 4.7,
     "mainPicture": "https://primosmex.com/wp-content/uploads/2016/09/PMX-Food-Collage-1024x768.jpg",
     "type": [
         "Mexican"
@@ -178,7 +179,7 @@
     "restId": "22ac5abb-188e-46c8-89b6-f1d1a5f57008",
     "name": "El Pistolero",
     "priceLevel": 2,
-    "review": 3.8,
+    "reviewScore": 3.8,
     "mainPicture": "https://s.hdnux.com/photos/0/0/0/17255352/5/ratio3x2_1125.jpg",
     "type": [
         "Mexican"
