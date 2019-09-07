@@ -6,6 +6,15 @@ class TimeRound {
 
   TimeRound(this.opening, this.closing);
 
+  static fromJson(json) {
+    var re = RegExp(r"(\d\d):(\d\d)");
+    var matchOpening = re.allMatches(json['opening']).elementAt(0);
+    var matchClosing = re.allMatches(json['closing']).elementAt(0);
+    var opening = TimeOfDay(hour: int.parse(matchOpening.group(1)), minute: int.parse(matchOpening.group(2)));
+    var closing = TimeOfDay(hour: int.parse(matchClosing.group(1)), minute: int.parse(matchClosing.group(2)));
+    return TimeRound(opening, closing);
+  }
+
   static fromStringTime(String open, String close) {
     var parser = RegExp(r'^(\d\d)(?:\:|-|\.)(\d\d)$');
     var openH = parser.firstMatch(open).group(1);
@@ -32,6 +41,8 @@ class DayTimetable {
   }
 
   addRound(TimeRound round) {
+    if (timerounds == null)
+      timerounds = [];
     if (timerounds.length >= 2)
       return;
     timerounds.add(round);
@@ -97,7 +108,24 @@ class WeekTimetable {
 
   WeekTimetable([this.dayrounds]);
 
+  static fromJson(json) {
+    WeekTimetable timetable = WeekTimetable();
+    json.keys.forEach((k) {
+      int day = int.parse(k);
+      var dayTimetable = DayTimetable(day);
+      json[k].forEach((e) {
+        var timeround = TimeRound.fromJson(e);
+        dayTimetable.addRound(timeround);
+      });
+      timetable.addDay(dayTimetable);
+    });
+
+    return timetable;
+  }
+
   addDay(DayTimetable day) {
+    if (dayrounds == null)
+      dayrounds = [];
     dayrounds.add(day);
     dayrounds.sort((a, b) {
       return a.day.day > b.day.day ? -1 : 1;

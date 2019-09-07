@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.redAccent,
         // primarySwatch: Colors.blue,
       ),
-      initialRoute: '/restaurant',
+      initialRoute: '/',
       routes: {
         '/': (context) => NearmeRoute(),
         '/restaurant': (context) => RestaurantDetailsRoute(),

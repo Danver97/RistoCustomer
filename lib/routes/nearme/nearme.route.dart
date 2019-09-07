@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:prova/models/restaurant.dart';
 import 'package:prova/routes/restaurant_details/restaurant_details.route.dart';
 import 'dart:convert';
 
@@ -11,9 +12,19 @@ class NearmeRoute extends StatelessWidget {
 
   static final String routeName = '/nearme';
 
-  Future<List<Post>> fetchRestaurant() async {
-    final response =
-        await get('https://jsonplaceholder.typicode.com/posts/');
+  Future<List<Restaurant>> fetchRestaurant() async {
+    // final response = await get('https://jsonplaceholder.typicode.com/posts/');
+    final response2 = await get('http://demo4024441.mockable.io/nearme/');
+
+    if (response2.statusCode == 200) {
+      List<Restaurant> restaurants = [];
+      var decodedJson = json.decode(response2.body);
+      decodedJson.forEach((d) {
+        var restaurant = Restaurant.fromJson(d);
+        restaurants.add(restaurant);
+      });
+      print(restaurants);
+    /* }
 
     if (response.statusCode == 200) {
       List<Post> posts = [];
@@ -22,7 +33,8 @@ class NearmeRoute extends StatelessWidget {
         var post = Post.fromJson(d);
         posts.add(post);
       });
-      return posts;
+      return posts; */
+      return restaurants;
     } else {
       throw Exception('Failed to load restaurant');
     }
@@ -48,7 +60,7 @@ class NearmeRoute extends StatelessWidget {
           ],
         ),
         body: Center(
-          child: FutureBuilder<List<Post>>( // Turns async code in sync widget visualization
+          child: FutureBuilder<List<Restaurant>>( // Turns async code in sync widget visualization
             future: fetchRestaurant(),
             builder: (context, snapshot) {
 
@@ -60,7 +72,7 @@ class NearmeRoute extends StatelessWidget {
                   children: snapshot.data.map((d) {
                     return FlatRestaurantEntry(
                       margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                      restaurantName: d.title.substring(0, 30 < d.title.length ? 30 : d.title.length),
+                      restaurantName: d.name,
                       onTap: () {
                         Navigator.pushNamed(context, RestaurantDetailsRoute.routeName);
                       },

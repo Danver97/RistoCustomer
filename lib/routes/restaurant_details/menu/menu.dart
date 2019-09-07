@@ -5,11 +5,28 @@ class Menu {
 
   Menu([this.sections]);
 
+  static fromJson(json) {
+    Menu menu = Menu();
+
+    json.keys.forEach((k) {
+      var section = MenuSection(k);
+      json[k].forEach((e) {
+        var dish = Dish.fromJson(e);
+        section.addDish(dish);
+      });
+      menu.addSection(section);
+    });
+  }
+
   addSection(MenuSection section) {
+    if (this.sections == null)
+      this.sections = [];
     this.sections.add(section);
   }
 
   addSections(List<MenuSection> sections) {
+    if (this.sections == null)
+      this.sections = [];
     this.sections.addAll(sections);
   }
 }
@@ -21,10 +38,14 @@ class MenuSection {
   MenuSection(this.name, [this.dishes]);
 
   addDish(Dish dish) {
+    if (this.dishes == null)
+      this.dishes = [];
     this.dishes.add(dish);
   }
 
   addDishes(List<Dish> dishes) {
+    if (this.dishes == null)
+      this.dishes = [];
     this.dishes.addAll(dishes);
   }
 }
@@ -36,6 +57,12 @@ class Dish {
   ReviewScore review;
 
   Dish(this.name, this.imgUrl, this.price, this.review);
+
+  static fromJson(json) {
+    var price = Price(json['price']['currency'], json['price']['value']);
+    var review = ReviewScore(json['review'].toDouble());
+    return Dish(json['name'], json['imgUrl'], price, review);
+  }
 }
 
 class Price {
