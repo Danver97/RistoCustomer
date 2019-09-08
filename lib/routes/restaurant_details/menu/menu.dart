@@ -16,6 +16,8 @@ class Menu {
       });
       menu.addSection(section);
     });
+    
+    return menu;
   }
 
   addSection(MenuSection section) {

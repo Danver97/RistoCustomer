@@ -13,7 +13,6 @@ class NearmeRoute extends StatelessWidget {
   static final String routeName = '/nearme';
 
   Future<List<Restaurant>> fetchRestaurant() async {
-    // final response = await get('https://jsonplaceholder.typicode.com/posts/');
     final response2 = await get('http://demo4024441.mockable.io/nearme/');
 
     if (response2.statusCode == 200) {
@@ -23,17 +22,6 @@ class NearmeRoute extends StatelessWidget {
         var restaurant = Restaurant.fromJson(d);
         restaurants.add(restaurant);
       });
-      print(restaurants);
-    /* }
-
-    if (response.statusCode == 200) {
-      List<Post> posts = [];
-      var decodedJson = json.decode(response.body);
-      decodedJson.forEach((d) {
-        var post = Post.fromJson(d);
-        posts.add(post);
-      });
-      return posts; */
       return restaurants;
     } else {
       throw Exception('Failed to load restaurant');
@@ -75,7 +63,7 @@ class NearmeRoute extends StatelessWidget {
                       restaurant: r,
                       restaurantName: r.name,
                       onTap: () {
-                        Navigator.pushNamed(context, RestaurantDetailsRoute.routeName);
+                        Navigator.pushNamed(context, RestaurantDetailsRoute.routeName, arguments: r);
                       },
                     );
                   }).toList(),
@@ -92,23 +80,4 @@ class NearmeRoute extends StatelessWidget {
           ),
         ),
       );
-}
-
-// TODO: cambiare con una classe per i ristoranti
-class Post {
-  final int userId;
-  final int id;
-  final String title;
-  final String body;
-
-  Post({this.userId, this.id, this.title, this.body});
-
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-      body: json['body'],
-    );
-  }
 }

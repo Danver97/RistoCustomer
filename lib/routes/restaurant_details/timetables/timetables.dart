@@ -128,7 +128,7 @@ class WeekTimetable {
       dayrounds = [];
     dayrounds.add(day);
     dayrounds.sort((a, b) {
-      return a.day.day > b.day.day ? -1 : 1;
+      return a.day.day < b.day.day ? -1 : 1;
     });
   }
 
