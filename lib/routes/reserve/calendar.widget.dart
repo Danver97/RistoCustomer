@@ -109,7 +109,6 @@ class CalendarGridState extends State<CalendarGrid> {
   
   initState() {
     super.initState();
-    print(widget.initialDayPicked);
     day = widget.initialDayPicked;
   }
 
@@ -125,7 +124,6 @@ class CalendarGridState extends State<CalendarGrid> {
         _onDayChanged(this.day);
       }
     });
-    print(day);
   }
 
   _onDaySelected(DateTime value) {

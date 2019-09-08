@@ -14,8 +14,6 @@ class RestaurantDetailsRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Restaurant restaurant = ModalRoute.of(context).settings.arguments;
-    print(restaurant.timetable.getDay(1).day);
-    print(restaurant.timetable.getDay(7).day);
     return Scaffold(
       body: RestaurantDetailsScrollView(restaurant: restaurant, reviews: demoReviews,),
     );
