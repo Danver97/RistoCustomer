@@ -7,6 +7,7 @@ class Reservation {
   DateTime day;
   TimeOfDay time;
 
+  // TODO: far si che restId sia richiesto e gestire il suo ottenimento nella reserve.route
   Reservation({
     this.restId,
     this.resId,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:prova/api/nearme.api.dart';
 import 'package:prova/models/restaurant.dart';
 import 'package:prova/routes/restaurant_details/restaurant_details.route.dart';
