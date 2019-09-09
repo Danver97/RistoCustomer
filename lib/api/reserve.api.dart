@@ -37,6 +37,7 @@ class ReserveApi {
       HttpHeaders.contentTypeHeader: 'application/json',
     };
     String body = jsonEncode(reservation);
+    print(body);
     return post(url, headers: headers, body: body,);
   }
 }

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart';
 
 class NearmeApi {
-  static final baseUrl = '';
+  static final baseUrl = 'demo4024441.mockable.io';
 
   static nearmeRestaurants() {
     final String path = '/nearme';

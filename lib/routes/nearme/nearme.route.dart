@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:prova/api/nearme.api.dart';
 import 'package:prova/models/restaurant.dart';
 import 'package:prova/routes/restaurant_details/restaurant_details.route.dart';
 import 'dart:convert';
@@ -13,7 +14,7 @@ class NearmeRoute extends StatelessWidget {
   static final String routeName = '/nearme';
 
   Future<List<Restaurant>> fetchRestaurant() async {
-    final response2 = await get('http://demo4024441.mockable.io/nearme/');
+    final response2 = await NearmeApi.nearmeRestaurants();
 
     if (response2.statusCode == 200) {
       List<Restaurant> restaurants = [];
