@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:prova/api/reserve.api.dart';
 import 'package:prova/models/reservation.dart';
 import 'package:prova/routes/reserve/calendar.widget.dart';
 import 'package:prova/routes/reserve/hourpicker.widget.dart';
@@ -43,11 +44,17 @@ class ReservationBodyState extends State<ReservationBody> {
     return ModalRoute.of(context).settings.arguments;
   }
 
-  _onReservationComplete(Reservation reservation) {
-    setState(() {
-      this.reservation = reservation;
-      result = ReservationRequestResult.success;
-    });
+  _onReservationComplete(Reservation reservation) async {
+    var response = await ReserveApi.makeReservation(reservation);
+      setState(() {
+        this.reservation = reservation;
+        if (response.statusCode == 200)
+          result = ReservationRequestResult.success;
+        else if (response.statusCode == 409)
+          result = ReservationRequestResult.noAvailability;
+        else
+          result = ReservationRequestResult.error;
+      });
   }
 
   @override

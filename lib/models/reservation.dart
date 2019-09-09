@@ -14,6 +14,15 @@ class Reservation {
     @required this.day,
     @required this.time,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'restId': restId,
+      'resId': resId,
+      'peopleNumber': peopleNumber,
+      'date': DateTime(day.year, day.month, day.day, time.hour, time.minute).toUtc().toIso8601String(),
+    };
+  }
 }
 
 
