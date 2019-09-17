@@ -108,7 +108,10 @@ class Details extends StatelessWidget {
               fabColor: Color(0xFFFFA200),
               label: 'Reservation',
               onPressed: () {
-                Navigator.pushNamed(context, ReserveRoute.routeName, arguments: restaurant.timetable);
+                Navigator.pushNamed(context, ReserveRoute.routeName, arguments: {
+                  'restId': restaurant.restId,
+                  'timetable': restaurant.timetable,
+                });
               }),
           _fab(
               icon: Icon(
