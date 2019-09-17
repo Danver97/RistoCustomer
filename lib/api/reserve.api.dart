@@ -5,7 +5,8 @@ import 'package:http/http.dart';
 import 'package:prova/models/reservation.dart';
 
 class ReserveApi {
-  static final baseUrl = 'demo4024441.mockable.io';
+  // static final baseUrl = 'demo4024441.mockable.io';
+  static final baseUrl = 'default-lb-519596853.eu-west-2.elb.amazonaws.com';
 
   static getRestaurantReservations(String restId) {
     final String path = '/reservation/restaurant';
@@ -30,7 +31,8 @@ class ReserveApi {
   }
 
   static makeReservation(Reservation reservation) {
-    final String path = '/reservation';
+    // final String path = '/reservation';
+    final String path = '/reservation-service/reservationDemo';
     var url = Uri.http(baseUrl, path);
 
     Map<String, String> headers = {
