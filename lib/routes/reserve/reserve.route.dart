@@ -41,7 +41,12 @@ class ReservationBodyState extends State<ReservationBody> {
   Reservation reservation;
 
   WeekTimetable _getTimetable(BuildContext context) {
-    return ModalRoute.of(context).settings.arguments;
+    Map map = ModalRoute.of(context).settings.arguments;
+    return map['timetable'];
+  }
+  String _getRestId(BuildContext context) {
+    Map map = ModalRoute.of(context).settings.arguments;
+    return map['restId'];
   }
 
   _onReservationComplete(Reservation reservation) async {
@@ -60,8 +65,9 @@ class ReservationBodyState extends State<ReservationBody> {
   @override
   Widget build(BuildContext context) {
     var timetable = _getTimetable(context);
+    var restId = _getRestId(context);
     return result == null
-        ? ReservationForm(timetable: timetable, onReservationCompleted: _onReservationComplete)
+        ? ReservationForm(restId: restId, timetable: timetable, onReservationCompleted: _onReservationComplete)
         : ReservationRequestResultWidget(result: result, reservation: reservation,);
   }
 }
@@ -148,10 +154,11 @@ class ReservationRequestResultWidget extends StatelessWidget {
 
 
 class ReservationForm extends StatefulWidget {
+  final String restId;
   final WeekTimetable timetable;
   final Function onReservationCompleted;
 
-  ReservationForm({@required this.timetable, this.onReservationCompleted});
+  ReservationForm({@required this.restId, @required this.timetable, this.onReservationCompleted});
 
   @override
   State<StatefulWidget> createState() => ReservationFormState();
@@ -282,8 +289,14 @@ class ReservationFormState extends State<ReservationForm> {
   _validateReservationData() {
     if (peoplePicked != null && dayPicked != null && timePicked != null) {
       print('RESERVATION COMPLETED!');
-      if (widget.onReservationCompleted != null)
-        widget.onReservationCompleted(Reservation(peopleNumber: peoplePicked, day: dayPicked, time: timePicked));
+      if (widget.onReservationCompleted != null) {
+        widget.onReservationCompleted(Reservation(
+          restId: widget.restId,
+          peopleNumber: peoplePicked,
+          day: dayPicked,
+          time: timePicked
+        ));
+      }
     }
   }
 

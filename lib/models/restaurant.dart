@@ -53,8 +53,8 @@ class Restaurant {
   });
 
   static fromJson(json) {
-    var restId = json['restId'];
-    var name = json['name'];
+    var restId = json['restId'] ?? json['id'];
+    var name = json['name'] ?? json['restaurantName'];
     var score = ReviewScore(json['reviewScore'].toDouble());
     var types = json['type'].cast<String>().toList();
     var mainPicture = json['mainPicture'];
